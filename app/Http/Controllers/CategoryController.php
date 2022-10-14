@@ -12,7 +12,7 @@ class CategoryController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->only(['list']);
-        $this->middleware('auth:api')->only(['store', 'update', 'delete']);
+        $this->middleware('auth:api')->only(['store', 'update', 'destroy']);
     }
 
     public function list()

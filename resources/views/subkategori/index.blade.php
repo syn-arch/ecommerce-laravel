@@ -1,12 +1,12 @@
 @extends('layout.app')
 
-@section('title', 'Data Kategori')
+@section('title', 'Data Subkategori')
 
 @section('content')
 <div class="card shadow">
     <div class="card-header">
         <h4 class="card-title">
-            Data Kategori
+            Data Subkategori
         </h4>
     </div>
     <div class="card-body">
@@ -19,6 +19,7 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Kategori</th>
+                        <th>Nama Subkategori</th>
                         <th>Deskripsi</th>
                         <th>Gambar</th>
                         <th>Aksi</th>
@@ -34,7 +35,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Form Kategori</h5>
+                <h5 class="modal-title">Form Subkategori</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -42,11 +43,19 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <form class="form-kategori">
+                        <form class="form-subkategori">
                             <div class="form-group">
-                                <label for="">Nama Kategori</label>
-                                <input type="text" class="form-control" name="nama_kategori" placeholder="Nama Kategori"
-                                    required>
+                                <label for="">Nama Subkategori</label>
+                                <input type="text" class="form-control" name="nama_subkategori"
+                                    placeholder="Nama Subkategori" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Kategori</label>
+                                <select name="id_kategori" id="id_kategori" class="form-control">
+                                    @foreach ($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->nama_kategori}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="">Deskripsi</label>
@@ -78,7 +87,7 @@
 <script>
     $(function() {
         $.ajax({
-            url: '/api/categories',
+            url: '/api/subcategories',
             success: function({
                 data
             }) {
@@ -88,7 +97,8 @@
                     row += `
                         <tr>
                             <td>${index+1}</td>
-                            <td>${val.nama_kategori}</td>
+                            <td>${val.nama_subkategori}</td>
+                            <td>${val.category.nama_kategori}</td>
                             <td>${val.deskripsi}</td>
                             <td><img src="/uploads/${val.gambar}" width="150"></td>
                             <td>
@@ -111,10 +121,10 @@
 
             if (confirm_dialog) {
                 $.ajax({
-                    url: '/api/categories/' + id,
+                    url: '/api/subcategories/' + id,
                     type: "DELETE",
                     headers: {
-                        "Authorization": 'Bearer ' + token
+                        "Authorization":'Bearer ' + token
                     },
                     success: function(data) {
                         if (data.message == 'success') {
@@ -124,22 +134,21 @@
                     }
                 });
             }
-
-
         });
 
         $('.modal-tambah').click(function() {
             $('#modal-form').modal('show')
-            $('input[name="nama_kategori"]').val('')
+            $('input[name="nama_subkategori"]').val('')
             $('textarea[name="deskripsi"]').val('')
+            $('select[name="id_kategori"]').val('');
 
-            $('.form-kategori').submit(function(e) {
+            $('.form-subkategori').submit(function(e) {
                 e.preventDefault()
                 const token = localStorage.getItem('token')
                 const frmdata = new FormData(this);
 
                 $.ajax({
-                    url: 'api/categories',
+                    url: 'api/subcategories',
                     type: 'POST',
                     data: frmdata,
                     cache: false,
@@ -153,9 +162,6 @@
                             alert('Data berhasil ditambah')
                             location.reload();
                         }
-                    },
-                    fail : function(data){
-                        console.log(data)
                     }
                 })
             });
@@ -165,36 +171,34 @@
             $('#modal-form').modal('show')
             const id = $(this).data('id');
 
-            $.get('/api/categories/' + id, function({
+            $.get('/api/subcategories/' + id, function({
                 data
             }) {
-                $('input[name="nama_kategori"]').val(data.nama_kategori);
+                $('input[name="nama_subkategori"]').val(data.nama_subkategori);
+                $('select[name="id_kategori"]').val(data.id_kategori);
                 $('textarea[name="deskripsi"]').val(data.deskripsi);
             });
 
-            $('.form-kategori').submit(function(e) {
+            $('.form-subkategori').submit(function(e) {
                 e.preventDefault()
                 const token = localStorage.getItem('token')
                 const frmdata = new FormData(this);
 
                 $.ajax({
-                    url: `api/categories/${id}?_method=PUT`,
+                    url: `api/subcategories/${id}?_method=PUT`,
                     type: 'POST',
                     data: frmdata,
                     cache: false,
                     contentType: false,
                     processData: false,
                     headers: {
-                        "Authorization": 'Bearer ' + token
+                        "Authorization":'Bearer ' + token
                     },
                     success: function(data) {
                         if (data.success) {
                             alert('Data berhasil diubah')
                             location.reload();
                         }
-                    },
-                    fail : function(data){
-                        console.log(data)
                     }
                 })
             });

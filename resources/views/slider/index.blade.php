@@ -1,12 +1,12 @@
 @extends('layout.app')
 
-@section('title', 'Data Kategori')
+@section('title', 'Data Slider')
 
 @section('content')
 <div class="card shadow">
     <div class="card-header">
         <h4 class="card-title">
-            Data Kategori
+            Data Slider
         </h4>
     </div>
     <div class="card-body">
@@ -18,7 +18,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Kategori</th>
+                        <th>Nama Slider</th>
                         <th>Deskripsi</th>
                         <th>Gambar</th>
                         <th>Aksi</th>
@@ -34,7 +34,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Form Kategori</h5>
+                <h5 class="modal-title">Form slider</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -42,10 +42,10 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <form class="form-kategori">
+                        <form class="form-slider">
                             <div class="form-group">
-                                <label for="">Nama Kategori</label>
-                                <input type="text" class="form-control" name="nama_kategori" placeholder="Nama Kategori"
+                                <label for="">Nama slider</label>
+                                <input type="text" class="form-control" name="nama_slider" placeholder="Nama slider"
                                     required>
                             </div>
                             <div class="form-group">
@@ -78,7 +78,7 @@
 <script>
     $(function() {
         $.ajax({
-            url: '/api/categories',
+            url: '/api/sliders',
             success: function({
                 data
             }) {
@@ -88,7 +88,7 @@
                     row += `
                         <tr>
                             <td>${index+1}</td>
-                            <td>${val.nama_kategori}</td>
+                            <td>${val.nama_slider}</td>
                             <td>${val.deskripsi}</td>
                             <td><img src="/uploads/${val.gambar}" width="150"></td>
                             <td>
@@ -111,10 +111,10 @@
 
             if (confirm_dialog) {
                 $.ajax({
-                    url: '/api/categories/' + id,
+                    url: '/api/sliders/' + id,
                     type: "DELETE",
                     headers: {
-                        "Authorization": 'Bearer ' + token
+                        "Authorization":"Bearer "+token
                     },
                     success: function(data) {
                         if (data.message == 'success') {
@@ -130,32 +130,29 @@
 
         $('.modal-tambah').click(function() {
             $('#modal-form').modal('show')
-            $('input[name="nama_kategori"]').val('')
+            $('input[name="nama_slider"]').val('')
             $('textarea[name="deskripsi"]').val('')
 
-            $('.form-kategori').submit(function(e) {
+            $('.form-slider').submit(function(e) {
                 e.preventDefault()
                 const token = localStorage.getItem('token')
                 const frmdata = new FormData(this);
 
                 $.ajax({
-                    url: 'api/categories',
+                    url: 'api/sliders',
                     type: 'POST',
                     data: frmdata,
                     cache: false,
                     contentType: false,
                     processData: false,
                     headers: {
-                        "Authorization": 'Bearer ' + token
+                        "Authorization":"Bearer "+token
                     },
                     success: function(data) {
                         if (data.success) {
                             alert('Data berhasil ditambah')
                             location.reload();
                         }
-                    },
-                    fail : function(data){
-                        console.log(data)
                     }
                 })
             });
@@ -165,36 +162,33 @@
             $('#modal-form').modal('show')
             const id = $(this).data('id');
 
-            $.get('/api/categories/' + id, function({
+            $.get('/api/sliders/' + id, function({
                 data
             }) {
-                $('input[name="nama_kategori"]').val(data.nama_kategori);
+                $('input[name="nama_slider"]').val(data.nama_slider);
                 $('textarea[name="deskripsi"]').val(data.deskripsi);
             });
 
-            $('.form-kategori').submit(function(e) {
+            $('.form-slider').submit(function(e) {
                 e.preventDefault()
                 const token = localStorage.getItem('token')
                 const frmdata = new FormData(this);
 
                 $.ajax({
-                    url: `api/categories/${id}?_method=PUT`,
+                    url: `api/sliders/${id}?_method=PUT`,
                     type: 'POST',
                     data: frmdata,
                     cache: false,
                     contentType: false,
                     processData: false,
                     headers: {
-                        "Authorization": 'Bearer ' + token
+                        "Authorization":"Bearer "+token
                     },
                     success: function(data) {
                         if (data.success) {
                             alert('Data berhasil diubah')
                             location.reload();
                         }
-                    },
-                    fail : function(data){
-                        console.log(data)
                     }
                 })
             });

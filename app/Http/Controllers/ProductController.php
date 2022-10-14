@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
+use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
@@ -11,8 +13,18 @@ class ProductController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => 'index']);
+        $this->middleware('auth')->only(['list']);
+        $this->middleware('auth:api')->only(['store', 'update', 'destroy']);
     }
+
+    public function list()
+    {
+        $categories = Category::all();
+        $subcategories = Subcategory::all();
+
+        return view('product.index', compact('categories', 'subcategories'));
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +32,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::with('category', 'subcategory')->get();
 
         return response()->json([
             'data' => $products
@@ -80,6 +92,7 @@ class ProductController extends Controller
         $Product = Product::create($input);
 
         return response()->json([
+            'success' => true,
             'data' => $Product
         ]);
     }
@@ -93,6 +106,7 @@ class ProductController extends Controller
     public function show(Product $Product)
     {
         return response()->json([
+            'success' => true,
             'data' => $Product
         ]);
     }
@@ -155,6 +169,7 @@ class ProductController extends Controller
         $Product->update($input);
 
         return response()->json([
+            'success' => true,
             'message' => 'success',
             'data' => $Product
         ]);
@@ -172,6 +187,7 @@ class ProductController extends Controller
         $Product->delete();
 
         return response()->json([
+            'success' => true,
             'message' => 'success'
         ]);
     }
