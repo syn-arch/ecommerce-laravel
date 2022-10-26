@@ -1,0 +1,263 @@
+
+/*-------------------------------------------------------*/
+/* Typography
+/*-------------------------------------------------------*/
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: $heading-font;
+  margin-top: 0;
+  color: $heading-color;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+h1 { font-size: 32px; }
+h2 { font-size: 24px; }
+h3 { font-size: 22px; }
+h4 { font-size: 20px; }
+h5 { font-size: 18px; }
+h6 { font-size: 16px; }
+
+h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
+  color: inherit;
+}
+
+h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
+  color: $heading-color;
+  font-size: 85%;
+  font-weight: bold;
+}
+
+.nocaps {
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.heading {
+  position: relative;
+  margin-bottom: 0;
+
+  &.large {
+    font-size: 42px;
+  }
+}
+
+.heading-row {
+  margin-bottom: 50px;
+}
+
+.subheading {
+  font-weight: 600;
+  display: inline-block;
+  color: $text-color;
+  font-size: 16px;
+  margin-bottom: 9px;
+}
+
+a {
+  text-decoration: none;
+  color: $main-color;
+  outline: none;
+  @include transition (color .1s ease-in-out);
+
+  &:hover {
+    text-decoration: none;
+    color: $bg-dark;
+    outline: none;
+  }
+
+  &:focus {
+    color: $main-color;
+    text-decoration: none;
+    outline: none;
+  }
+}
+
+b, strong {
+  color: $heading-color;
+}
+
+p {
+  font-size: 14px;
+  color: $text-color;
+  font-weight: normal;
+  line-height: 24px;
+}
+
+.list-inline {
+  margin: 0;
+}
+
+.bottom-line {
+  &:after {
+    content: "";
+    display: block;
+    width: 46px;
+    border-bottom: 2px solid $main-color;
+    margin: 17px auto 0;
+    z-index: 1;
+    position: relative;
+  }
+
+  &.left-align:after {
+    margin: 22px auto 22px 0;
+  }
+
+  &.grey:after {
+    border-color: #ebebeb;
+  }
+
+  &.full-grey:after {
+    width: 100%;
+    border-color: $border-color;
+    margin-top: 16px;
+  }
+
+}
+
+
+@media (min-width: 768px) {
+  .lead {
+    font-size: 18px;
+  }
+}
+
+.lead {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+blockquote {
+  padding: 0 0 20px;
+  margin: 0;
+  border: none;
+
+  & > p {
+    font-size: 16px;
+    line-height: 28px;
+    font-family: $body-font;
+    margin-bottom: 10px !important;
+    color: $text-color;
+    position: relative;
+  }
+
+  & > span {
+    color: $main-color;
+    font-size: 13px;
+  }
+}
+
+.blockquote-style-1 {
+  padding: 40px;
+  background-color: $bg-light;
+
+  & span {
+    color: $main-color;
+  }
+
+}
+
+.blockquote-style-2 {
+  padding: 20px 40px;
+  border-left: 2px solid $main-color;
+}
+
+.dropcap {
+  font-family: $heading-font;
+}
+
+.dropcap.style-1 {
+  float: left;
+  color: $main-color;
+  font-size: 47px;
+  line-height: 48px;
+  padding-right: 10px;
+}
+
+.dropcap.style-2 {
+  float: left;
+  color: #fff;
+  text-align: center;
+  background-color: $main-color;
+  width: 38px;
+  height: 38px;
+  font-size: 24px;
+  line-height: 40px;
+  margin: 7px 10px 0 0;
+}
+
+.highlight {
+  padding: 3px 5px;
+  color: #fff;
+  background-color: $main-color;
+}
+
+.list li {
+  line-height: 24px;
+  position: relative;
+
+  i {
+    line-height: 21px;
+  }
+}
+
+.bullets li,
+.arrows li,
+.checks li,
+.numbers li {
+  margin-bottom: 20px;
+  color: $text-color;
+}
+
+.bullets li {
+  padding-left: 15px;
+}
+
+.bullets li:before {
+  content: "\2022";
+  font-size: 18px;
+  position: absolute;
+  left: 0;
+  color: $main-color;
+}
+
+.arrows i {
+  margin-right: 5px;
+}
+
+.arrows i,
+.checks i {
+  color: $main-color;
+}
+
+.checks i {
+  font-size: 12px;
+  margin-right: 7px;
+  vertical-align: middle;
+}
+
+ol.numbers {
+  padding-left: 20px;
+}
+
+.columns [class^="col"],
+.section-headings [class^="col"] {
+  margin-bottom: 40px;
+}
+
+
+
+.widget-title {
+  font-size: 16px;
+  margin-bottom: 30px;
+}

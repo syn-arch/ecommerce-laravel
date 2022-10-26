@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReportConrtoller;
 use App\Http\Controllers\ReviewController;
@@ -35,6 +36,7 @@ Route::group([
         'testimonis' => TestimoniController::class,
         'reviews' => ReviewController::class,
         'orders' => OrderController::class,
+        'payments' => PaymentController::class,
     ]);
 
     Route::get('pesanan/baru', [OrderController::class, 'baru']);

@@ -81,6 +81,11 @@
                 </div>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/payment">
+                    <i class="fas fa-fw fa-credit-card"></i>
+                    <span>Pembayaran</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/laporan">
                     <i class="fas fa-fw fa-book"></i>
                     <span>Laporan Pesanan</span></a>

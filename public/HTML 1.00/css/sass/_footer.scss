@@ -1,0 +1,98 @@
+/*-------------------------------------------------------*/
+/* Footer Type-1
+/*-------------------------------------------------------*/
+
+.footer-widgets {
+  padding: 80px 0;
+
+  .widget-title {
+    margin-bottom: 26px;
+    font-size: 16px;
+    position: relative;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+
+  a {
+    color: $text-color;
+
+    &:hover {
+      color: $heading-color;
+    }
+  }
+}
+
+.footer-about-us p {
+  font-size: 13px;
+  line-height: 28px;
+  margin-top: 43px;
+}
+
+.footer-get-in-touch {
+
+  p,
+  a {
+    line-height: 31px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+.footer-address {
+  line-height: 24px;
+  margin-bottom: 20px;
+}
+
+.entry-li:first-child,
+.footer-links li:first-child {
+  padding-top: 0 !important;
+}
+
+.entry-li:last-child,
+.footer-links li:last-child {
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+
+.footer-links ul > li {
+  font-size: 13px;
+}
+
+
+// Payment Systems
+.footer-payment-systems i {
+  font-size: 26px;
+  vertical-align: middle;
+  line-height: 32px;
+}
+
+.bottom-footer {
+  padding: 23px 0;
+  border-top: 1px solid $border-color;
+
+  .footer-socials {
+    margin-top: 0;
+  }
+
+  .social-icons a {
+    background-color: transparent;
+    margin-bottom: 0;
+
+    &:hover {
+      background-color: transparent !important;
+    }
+  }
+}
+
+.copyright {
+
+  span {
+    display: inline-block;
+    font-size: 13px;
+    line-height: 32px;
+  }
+
+  a {
+    color: $text-color;
+  }
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2017 by original authors @ fontello.com</metadata>
+<defs>
+<font id="ui-icons" horiz-adv-x="1000" >
+<font-face font-family="ui-icons" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="left-arrow" unicode="&#xe800;" d="M306 352l421-421-42-41-462 462 462 462 42-42-421-420z" horiz-adv-x="1000" />
+
+<glyph glyph-name="right-arrow" unicode="&#xe801;" d="M777 352l-462-462-42 41 421 421-421 420 42 42 462-462z" horiz-adv-x="1000" />
+
+<glyph glyph-name="zoom" unicode="&#xe802;" d="M882 291v-323h-323v59h224l-606 606v-224h-59v323h323v-58h-222l605-605v222h58z" horiz-adv-x="1000" />
+
+<glyph glyph-name="close" unicode="&#xe803;" d="M314 102c12-13 32-13 44 0l173 173 173-173c12-13 32-13 44 0 13 12 13 32 0 44l-173 173 173 173c13 12 13 32 0 44-12 12-32 12-44 0l-173-173-173 173c-12 12-32 12-44 0-12-12-12-32 0-44l173-173-173-173c-12-12-12-32 0-44z" horiz-adv-x="1000" />
+</font>
+</defs>
+</svg>

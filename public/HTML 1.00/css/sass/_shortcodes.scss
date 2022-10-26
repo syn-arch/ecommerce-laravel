@@ -1,0 +1,1003 @@
+/*-------------------------------------------------------*/
+/* Sliders
+/*-------------------------------------------------------*/
+.owl-carousel,
+.flickity {
+  overflow: hidden;
+}
+
+.owl-carousel img {
+  width: 100%;
+}
+
+.owl-pagination {
+  position: relative;
+  margin-top: 30px;
+  left: 0;
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+
+.owl-page {
+  display: inline-block;
+  padding: 5px;
+  position: relative;
+
+  &.active span {
+    display: block;
+    width: 12px;
+    height: 12px;
+    margin: 0;
+    opacity: 1;
+    border-color: transparent;
+    background: $main-color;
+  }
+
+  span {
+    display: block;
+    position: relative;
+    width: 12px;
+    height: 12px;
+    opacity: 0.7;
+    background: transparent;
+    z-index: 100;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    @include transition ($all);
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.owl-carousel {
+  cursor: move;
+  cursor: -webkit-grab;
+  cursor: -o-grab;
+  cursor: -ms-grab;
+  cursor: grab;
+}
+
+.owl-buttons {
+  position: static;
+}
+
+.owl-prev,
+.flex-direction-nav .flex-prev,
+.flickity-prev-next-button.previous {
+  left: -40px;
+}
+
+.owl-next,
+.flex-direction-nav .flex-next,
+.flickity-prev-next-button.next {
+  right: -40px;
+}
+
+.flex-direction-nav .flex-prev,
+.flex-direction-nav .flex-next {
+  opacity: 0;
+}
+
+.owl-prev,
+.owl-next,
+.flex-direction-nav a,
+.flickity-prev-next-button {
+  display: block;
+  position: absolute;
+  top: 50%;
+  margin-top: -20px;
+  text-align: center;
+  line-height: 40px;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  opacity: 0;
+  @include transition ($all);
+}
+
+.flickity-prev-next-button,
+.flex-direction-nav a {
+  width: 60px;
+  height: 80px;
+  margin-top: -40px;
+}
+
+.flickity-prev-next-button.previous {
+  border-radius: 0 3px 3px 0;
+}
+
+.flickity-prev-next-button.next {
+  border-radius: 3px 0 0 3px;
+}
+
+.flex-direction-nav a {
+  background-color: #fff;
+
+  i {
+    font-size: 26px;
+    color: $heading-color;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include transform (translate(-50%, -50%));
+  }
+}
+
+.flickity-prev-next-button svg {
+  width: auto;
+  height: auto;
+}
+
+
+.owl-next:before,
+#flexslider .flex-direction-nav .flex-next:before,
+.flickity-prev-next-button:before {
+  left: auto;
+  right: 0;
+}
+
+.owl-prev i,
+.owl-next i,
+#thumbs a i {
+  position: relative;
+  font-size: 28px;
+  color: $heading-color;
+}
+
+.light-arrows .owl-prev i,
+.light-arrows .owl-next i,
+#flexslider.light-arrows a i {
+  color: #fff;
+}
+
+.light-arrows .flickity-prev-next-button .arrow {
+  fill: #fff;
+}
+
+.owl-carousel:hover .owl-next,
+#flexslider:hover .flex-direction-nav .flex-next {
+  opacity: 1;
+  right: 10px;
+}
+
+.owl-carousel:hover .owl-prev,
+#flexslider:hover .flex-direction-nav .flex-prev {
+  opacity: 1;
+  left: 10px;
+}
+
+.flickity-slider-wrap:hover .flickity-prev-next-button.previous {
+  opacity: 1;
+  left: 20px;
+}
+.flickity-slider-wrap:hover .flickity-prev-next-button.next {
+  opacity: 1;
+  right: 20px;
+}
+
+.flickity-prev-next-button,
+.flickity-prev-next-button:hover {
+  background-color: transparent;
+}
+
+.flickity-prev-next-button:focus {
+  box-shadow: none;
+}
+
+.flickity-prev-next-button {
+  border-radius: 0;
+  -webkit-transform: none;
+  -ms-transform: none;
+  -o-transform: none;
+  transform: none;
+
+  .arrow {
+    fill: #7f7f7f;
+  }
+}
+
+.flickity-page-dots {
+  position: relative;
+  bottom: auto;
+  margin-top: 50px;
+}
+
+.flickity-page-dots .dot,
+.flex-control-paging li a {
+  height: 12px;
+  width: 12px;
+  opacity: 0.5;
+  margin: 0 5px;
+  border: 2px solid #fff;
+  @include transition ($all);
+  border-radius: 50%;
+  background: transparent;
+}
+
+.flickity-page-dots .dot:hover {
+  opacity: 1;
+}
+
+.flickity-page-dots .dot.is-selected {
+  opacity: 1;
+  background: $main-color;
+  border-color: transparent;
+}
+
+.flex-control-nav {
+  bottom: 15px;
+
+  & li {
+    margin: 0;
+  }
+}
+
+.is-dragging {
+  pointer-events: none;
+}
+
+.flickity-slider-wrap {
+  overflow: hidden;
+  
+  &.dots-inside .flickity-page-dots {
+    position: absolute;
+    bottom: 20px;
+    margin-top: 0;
+  }
+}
+
+.flickity-slider-wrap.dark-dots .flickity-page-dots .dot,
+.owl-dark-dots .owl-page span {
+  border-color: $text-color;
+}
+
+.flickity-slider-wrap.dark-dots .flickity-page-dots .dot.is-selected,
+.owl-dark-dots .owl-page.active span {
+  border-color: transparent;
+}
+
+.owl-white-dots .owl-page.active span {
+  background-color: #fff;
+}
+
+.owl-carousel.dots-inside .owl-pagination {
+  position: absolute;
+  bottom: 20px;
+  margin-top: 0;
+}
+
+
+/*-------------------------------------------------------*/
+/* Accordions and Toggles
+/*-------------------------------------------------------*/
+
+.accordion {
+  .panel-heading {
+    position: relative;
+    padding: 0;
+    border-radius: 0;
+    @include transition ($all);
+
+
+    &:hover a {
+      color: $main-color;
+    }
+
+    & > a.minus {
+      color: #000;
+    }
+
+    & > a > span {
+      display: block;
+      width: 13px;
+      height: 1px;
+      background-color: #000;
+      right: 18px;
+      top: 24px;
+      position: absolute;
+    }
+
+    & > a.plus > span {
+      background-color: $text-color;
+    }
+
+    & > a.plus > span:after {
+      content: "";
+      display: block;
+      width: 13px;
+      height: 1px;
+      position: absolute;
+      top: 0;
+      background-color: $text-color;
+      @include transform (rotate(-90deg));
+    }
+  }
+
+  &.panel-group .panel {
+    border: none;
+    box-shadow: none;
+    margin-top: 5px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }  
+}
+
+.panel-content p {
+  margin-bottom: 0;
+}
+
+.accordion .panel-heading+.panel-collapse>.panel-body,
+.panel-content {
+  border-top-color: transparent;
+  padding: 20px 0;
+  line-height: 24px;
+  border-radius: 0;
+}
+
+.accordion .panel-heading > a,
+.toggle > .acc-panel > a {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  padding: 14px 20px;
+  color: $text-color;
+  font-family: $heading-font;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  @include transition ($all);
+}
+
+.accordion .panel-heading > a {
+  border: 1px solid #e5e5e5;
+}
+
+.toggle > .acc-panel > a {
+  border-bottom: 1px solid $border-color;
+  padding: 14px 0;
+
+  &:after {
+    font-family: "Icon54com";
+    position: absolute;
+    content: "\ebd0";
+    right: 0;
+    margin-top: 2px;
+    color: $text-color;
+    font-size: 12px;
+  }
+
+  &.active:after {
+    content: "\f0aa";
+    color: $heading-color;
+  }
+}
+
+.toggle .panel-content {
+  padding: 20px 0 10px;
+  border: none;
+}
+
+
+/*-------------------------------------------------------*/
+/* Tabs
+/*-------------------------------------------------------*/
+
+.nav-tabs {
+  border-bottom: 1px solid $border-color;
+  margin-bottom: -1px;
+}
+
+.nav.nav-tabs>li.active>a {
+  border: 1px solid $border-color;
+  background-color: #fff;
+  border-bottom: 2px solid transparent;
+}
+
+.nav.nav-tabs>li.active>a,
+.nav.nav-tabs>li.active>a:hover,
+.nav.nav-tabs>li.active>a:focus,
+.nav.nav-tabs>li>a:hover,
+.nav.nav-tabs>li>a:focus {
+  color: $heading-color;
+}
+
+
+.nav-tabs > li {
+  margin-bottom: -2px;
+}
+
+.nav.nav-tabs > li > a {
+  padding: 14px 20px 13px;
+  background-color: $bg-light;
+  margin-right: -1px;
+  border: 1px solid $border-color;
+  border-radius: 0;
+  font-family: $heading-font;
+  color: $text-color;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tab-content {
+  padding: 30px;
+  border: 1px solid $border-color;
+  overflow: hidden;
+
+  & > .tab-pane > p {
+    margin-bottom: 0;
+  }
+}
+
+
+/*-------------------------------------------------------*/
+/* Buttons
+/*-------------------------------------------------------*/
+
+.section-buttons .btn {
+  margin-bottom: 20px;
+}
+
+.section-buttons [class^="col"] a:last-child {
+  margin-bottom: 50px;
+}
+
+.btn {
+  font-family: $heading-font;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  border: none;
+  border-radius: 0;
+  @include transition ($all);
+  color: #fff;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &:after {
+    width: 100%;
+    height: 0;
+    top: 0;
+    left: 0;
+    background: $bg-dark;
+    content: '';
+    position: absolute;
+    @include transition ($all);
+  }
+
+  &:hover {
+    @include transition ($all);
+    color: #fff;
+
+    &:after {
+      height: 100%;
+    }
+  }
+
+  &:hover span {
+    color: #fff;
+  }
+
+  &:focus {
+    color: #fff;
+    outline: none !important;
+  }
+
+  span {
+    position: relative;
+    z-index: 3;
+    @include transition (color .3s !important);
+  }
+
+  &.btn-color {
+    
+    &:before {
+      background-color: $main-color;
+    }
+
+    &:after {
+      background-color: $bg-dark;
+    }
+  }
+
+  &.btn-transparent {
+    background-color: transparent;
+
+    &:before {
+      border: 2px solid #fff;
+    }
+
+    &:hover {
+      border-color: transparent;
+    }
+
+    &:hover span {
+      color: #fff;
+    }
+  }
+
+  &.btn-light {
+    color: $heading-color;
+
+    &:before {
+      background-color: $bg-light;
+    }
+  }
+
+
+  &.btn-stroke {
+    background-color: transparent;
+    color: $heading-color;
+
+    &:before {
+      border: 2px solid $border-color;
+    }
+
+    &:hover {
+      border-color: transparent;
+    }
+  }
+
+  &.btn-dark {
+    color: #fff;
+
+    &:before {
+      background-color: $bg-dark;
+    }
+
+    &:after {
+      background-color: $main-color;
+    }
+  }
+
+  &.btn-white {
+    box-shadow: 1px 1.732px 3px 0px rgba( 0, 0, 0, .05 );
+    color: $bg-dark;
+
+    &:before {
+      background-color: #fff;
+    }
+
+    &:after {
+      background-color: lighten($bg-dark, 10%);
+    }
+  }
+
+  &.btn-pink:before {
+    background-color: #d77592;
+  }
+
+  &.btn-violet:before {
+    background-color: #b993c9;
+  }
+
+  &.btn-green:before {
+    background-color: #39b378;
+  }
+
+  &.btn-orange:before {
+    background-color: #e6965b;
+  }
+
+  &.btn-blue:before {
+    background-color: #57b3c6;
+  }
+}
+
+.btn-lg {
+  font-size: 12px;
+  padding: 0 35px;
+
+  span {
+    line-height: 44px;
+  }
+}
+
+.btn-md {
+  font-size: 11px;
+  padding: 0 30px;
+
+  span {
+    line-height: 38px;
+  }
+}
+
+.btn-sm {
+  font-size: 10px;
+  padding: 0 20px;
+
+  span {
+    line-height: 34px;
+  }
+}
+
+.rounded,
+.rounded:before {
+  border-radius: 70px;
+}
+
+
+/*-------------------------------------------------------*/
+/* Social Icons
+/*-------------------------------------------------------*/
+
+.social-icons {
+  a {
+    margin: 0 3px 6px 0;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    color: $text-color;
+    border: 1px solid darken($border-color, 7%);
+    line-height: 32px;
+    text-align: center;
+    font-size: 14px;
+    @include transition ($all);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+    &:last-child {
+      margin-right: 0 !important;
+    }
+
+    &:hover {
+      background-color: $main-color;
+      border-color: transparent;
+      color: #fff;
+    }
+  }
+
+  &.nobase a {
+    width: auto;
+    height: auto;
+    margin-right: 14px;
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+      background-color: transparent !important;
+      color: #000;
+    }
+  }
+}
+
+.rounded a {
+  border-radius: 50%;
+}
+
+
+/*-------------------------------------------------------*/
+/* Form Elements
+/*-------------------------------------------------------*/
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+input[type="search"],
+select,
+textarea {
+  height: 44px;
+  border: 1px solid darken($border-color, 5%);
+  background-color: transparent;
+  width: 100%;
+  margin-bottom: 30px;
+  font-size: 15px;
+  padding: 0 16px;
+  border-radius: 0;
+  @include box-shadow (none);  
+  @include transition ($all);
+}
+
+textarea {
+  height: auto;
+  padding: 8px 16px;
+  margin-bottom: 25px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="month"]:focus,
+input[type="week"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="time"]:focus,
+input[type="url"]:focus,
+textarea:focus {
+  border-color: $main-color;
+  background-color: #fff;
+  outline: none;
+  box-shadow: none !important;
+}
+
+input:not([type=checkbox]):not([type=radio]),
+textarea {
+  -webkit-appearance: none;
+}
+
+/* Change Color of Placeholders */
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: $text-color;
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+  color: $text-color;
+  opacity: 1;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: $text-color;
+  opacity: 1;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: $text-color;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  padding-left: 12px;
+  background-image: url(../img/dropdown.png);
+  background-repeat: no-repeat;
+  background-position: 100% 50%;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+.row-12 input[type="text"],
+.row-12 input[type="email"] {
+  margin-bottom: 12px;
+}
+
+
+/* Checkboxes & Radio Buttons
+-------------------------------------------------------*/
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"] + label:before {
+  width: 17px;
+  height: 17px;
+  content: "";
+  display: inline-block;
+  font-size: 13px;
+  margin: -4px 12px 0 0;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid darken($border-color, 5%);
+}
+
+input[type="checkbox"]:checked + label:before {
+  content: "\f0c8";
+  font-family: "FontAwesome";
+  color: $heading-color;
+  font-size: 9px;
+  line-height: 16px;
+}
+
+input[type="checkbox"] + label,
+input[type="radio"] + label {
+  cursor: pointer;
+  margin-bottom: 0;
+  text-transform: none;
+  letter-spacing: normal;
+  color: $heading-color;
+  font-size: 15px;
+}
+
+.radio-buttons > li,
+.checkboxes > li {
+  padding: 7px 0;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"] + label:before {
+  display: inline-block;
+  content: "";
+  width: 17px;
+  height: 17px;
+  box-shadow: 0 0 0 1px #d4d4d4;
+  border-radius: 40px;
+  margin: -3px 10px 0 0;
+  outline: none;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+input[type="radio"]:checked + label:before  {
+  background-color: $bg-dark;
+  border: 5px solid #fff;
+  padding: 1px;
+}
+
+input[type="radio"]:focus {
+  outline: none;
+}
+
+label {
+  color: $heading-color;
+  font-size: 15px;
+  vertical-align: middle;
+  font-weight: 400;
+  margin-bottom: 7px;
+}
+
+// Input Buttons
+input.btn,
+button.btn {
+
+  &.btn-lg {
+    padding: 0 34px;
+    height: 44px;
+    font-size: 12px;
+  }
+
+  &.btn-md {
+    padding: 0 27px;
+    height: 38px;
+  }
+
+  &:hover {
+    background-color: darken( $main-color, 7% );
+    color: #fff;
+  }
+
+  &.btn-dark {
+    background-color: $heading-color;
+    &:hover {
+      background-color: $main-color;
+    }
+  }
+
+  &.btn-stroke {
+    border: 2px solid $border-color;
+
+    &:hover {
+      background-color: $main-color;
+    }
+  }
+}
+
+
+/*-------------------------------------------------------*/
+/* Lightboxes
+/*-------------------------------------------------------*/
+.mfp-iframe-holder .mfp-content {
+  max-width: 1400px;
+}
+
+.modal-body,
+.modal-footer {
+  padding: 30px;
+}
+
+.modal-header {
+  padding: 15px 30px;
+}
+
+
+/*-------------------------------------------------------*/
+/* Tables
+/*-------------------------------------------------------*/
+
+table th {
+  font-weight: normal;
+}
+
+.table>thead>tr>th,
+.table>tbody>tr>th,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>tbody>tr>td,
+.table>tfoot>tr>td {
+  border-top: 1px solid $border-color;
+  padding: 10px;
+}
+
+.table>thead>tr>th {
+  border-bottom: none;
+}
+
+.table thead tr th {
+  font-size: 14px;
+}
+
+.table-bordered,
+.table-bordered>thead>tr>th,
+.table-bordered>tbody>tr>th,
+.table-bordered>tfoot>tr>th,
+.table-bordered>thead>tr>td,
+.table-bordered>tbody>tr>td,
+.table-bordered>tfoot>tr>td {
+  border: 1px solid $border-color;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+  background-color: $bg-light;
+}
+
+/*-------------------------------------------------------*/
+/* Alert Boxes
+/*-------------------------------------------------------*/
+
+.alert {
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  border: none;
+  color: #fff;
+  border-radius: 3px;
+  
+  strong {
+    color: inherit;
+  }
+}
+
+.alert-dismissible .close {
+  right: 0;
+  top: 0;
+  color: inherit;
+  position: relative;
+}
+
+.close {
+  opacity: 1;
+  text-shadow: none;
+  font-weight: normal;  
+}
+
+.modal-header .close {
+  font-size: 25px;
+  margin-top: 2px !important;
+}
+
+.alert-success { background-color: #dbfaeb; color: #158f54; }
+.alert-info { background-color: #dbeef2; color: #18869d; }
+.alert-warning { background-color: #f2ebd3; color: #916c46; }
+.alert-danger { background-color: #f9e0de; color: #a75a54; }

@@ -1,0 +1,168 @@
+/*-------------------------------------------------------*/
+/* Responsive Styles
+/*-------------------------------------------------------*/
+
+@media (max-width: 1199px) {
+
+  #products-grid .product-item {
+    width: 33.33333%;
+  }
+}
+
+
+@media (max-width: 991px) {
+
+  h1 {font-size: 28px; }
+  h2 { font-size: 25px; }
+  h3 { font-size: 22px; }
+  h4 { font-size: 19px; }
+
+  .section-wrap {
+    padding: 80px 0;
+    background-attachment: scroll !important;
+    background-position: 50% 50% !important;
+  }
+
+  .container-fluid.semi-fluid {
+    padding: 0 30px;
+  }
+
+  .call-to-action h2 {
+    font-size: 36px;
+  }
+
+  .footer-widgets .row > div {
+    margin-bottom: 60px;
+  }
+
+  .title-text h1 {
+    font-size: 24px;
+  }
+
+  .blog-standard .post-content {
+    padding-right: 15px;
+  }
+
+  .project-description {
+    padding-left: 15px;
+    margin-top: 30px;
+  }
+
+  .heading-row {
+    margin-bottom: 40px;
+  }
+
+  .testimonials .testimonial-text {
+    font-size: 22px;
+    line-height: 36px;
+  }
+
+  #products-grid .product-item {
+    width: 50%;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .container-fluid.semi-fluid {
+    padding: 0 15px;
+  }
+
+  .call-to-action h3 {
+    margin-bottom: 20px;
+  }
+
+  .entry-content {
+    padding-left: 0;
+    border-left: none;
+    margin-top: 30px;
+  }
+
+  .entry-wrap {
+    padding-top: 30px;
+  }
+
+  .ecommerce-ordering {
+    width: 60%;
+    float: none;
+    margin: auto;
+  }
+}
+
+
+@media (max-width: 640px) {
+
+  .col-xxs-12 {
+    width: 100%;
+  }
+
+  .col-xxs-6 {
+    width: 50%;
+  }
+
+  .entry .blockquote-style-1 {
+    padding: 40px;
+  }
+
+  .entry .blockquote-style-1 p:before {
+    display: none;
+  }
+
+  .pagination a:first-child {
+    margin-right: 5px;
+    width: 20px;
+  }
+
+  .pagination a:last-child {
+    margin-left: 5px;
+    width: 20px;
+  }
+
+  .pagination a > i {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 540px) {
+
+  .table-wrap {
+    overflow-x: scroll;
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  .page-404 h1 {
+    font-size: 100px;
+  }
+
+  #products-grid .product-item,
+  .product {
+    width: 100%;
+  }
+
+  .newsletter .newsletter-form {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .vertical .nav-tabs,
+  .nav-tabs > li {
+    float: none;
+    width: 100%;
+  }
+
+  .vertical .nav-tabs li {
+    padding-bottom: 0;
+  }
+
+  .vertical .nav.nav-tabs > li.active > a {
+    right: 0;
+    padding-left: 20px;
+  }
+
+  .vertical .tab-content {
+    border-top: 0;
+  }
+}
