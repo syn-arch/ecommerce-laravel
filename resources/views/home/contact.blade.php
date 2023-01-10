@@ -29,35 +29,21 @@
             <div class="col-md-3 col-md-offset-1 col-sm-5 mb-40">
                 <div class="contact-item">
                     <h6>Address</h6>
-                    <address>Zenna inc.<br>
-                        546 Little Lonsdale st<br>
-                        Philippines<br>
-                        PH 62058</address>
+                    <address>{{$about->judul_website}}<br>
+                        {{$about->alamat}}</address>
                 </div> <!-- end address -->
 
                 <div class="contact-item">
                     <h6>Information</h6>
                     <ul>
                         <li>
-                            <i class="fa fa-envelope"></i><a href="mailto:theme@support.com">theme@support.com</a>
+                            <i class="fa fa-envelope"></i><a href="mailto:{{$about->email}}">{{$about->email}}</a>
                         </li>
                         <li>
-                            <i class="fa fa-phone"></i><span>+1 (800) 888 5260 52 63</span>
-                        </li>
-                        <li>
-                            <i class="fa fa-print"></i><span>+1 (800) 888 5260 52 64</span>
+                            <i class="fa fa-phone"></i><span>{{$about->telepon}}</span>
                         </li>
                     </ul>
                 </div> <!-- end information -->
-
-                <div class="contact-item">
-                    <h6>Business hours</h6>
-                    <ul>
-                        <li>Monday – Friday: 9am to 20 pm</li>
-                        <li>Saturday: 9am to 17 pm</li>
-                        <li>Sunday: day off</li>
-                    </ul>
-                </div> <!-- end business hours -->
             </div>
 
         </div>

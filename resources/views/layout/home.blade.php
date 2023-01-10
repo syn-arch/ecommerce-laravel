@@ -66,8 +66,11 @@
                                 <!-- Logo -->
                                 <div class="logo-container">
                                     <div class="logo-wrap">
-                                        <a href="/front/index.html">
-                                            <img class="logo-dark2" src="/front/img/logo_dark2 - .png" alt="logo">
+                                        <a href="/">
+                                            @php
+                                            $about = App\Models\About::first();
+                                            @endphp
+                                            <img class="logo-dark2" src="/uploads/{{$about->logo}}" alt="logo">
                                         </a>
                                     </div>
                                 </div>
@@ -103,6 +106,10 @@
                                             <a href="/about">About</a>
                                         </li>
 
+                                        @php
+                                        $categories = App\Models\Category::all();
+                                        @endphp
+
                                         <li class="dropdown">
                                             <a href="#">Shop</a>
                                             <i class="fa fa-angle-down dropdown-trigger"></i>
@@ -110,16 +117,26 @@
                                                 <li>
                                                     <div class="megamenu-wrap container">
                                                         <div class="row">
+                                                            @foreach ($categories as $category)
                                                             <div class="col-md-3 megamenu-item">
                                                                 <ul class="menu-list">
                                                                     <li>
-                                                                        <span>Shop Pages</span>
+                                                                        <span>{{$category->nama_kategori}}</span>
                                                                     </li>
+                                                                    @php
+                                                                    $subcategories =
+                                                                    App\Models\Subcategory::where('id_kategori',
+                                                                    $category->id)->get();
+                                                                    @endphp
+                                                                    @foreach ($subcategories as $subcategory)
                                                                     <li>
-                                                                        <a href="/products/1">Catalog no Sidebar</a>
+                                                                        <a
+                                                                            href="/products/{{$subcategory->id}}">{{$subcategory->nama_subkategori}}</a>
                                                                     </li>
+                                                                    @endforeach
                                                                 </ul>
                                                             </div>
+                                                            @endforeach
                                                         </div>
                                                     </div>
                                                 </li>
