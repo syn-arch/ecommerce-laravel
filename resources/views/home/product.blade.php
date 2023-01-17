@@ -92,7 +92,8 @@
                     @endphp
 
                     @foreach ($colours as $colour)
-                    <a href="#" class="colour">{{$colour}}</a>
+                    <input type="radio" name="color" id="{{$colour}}" value="{{$colour}}" class="color">
+                    <label for="{{$colour}}" style="margin-right: 20px">{{$colour}}</label>
                     @endforeach
                 </div>
 
@@ -103,7 +104,8 @@
                     @endphp
 
                     @foreach ($sizes as $size)
-                    <a href="#" class="size">{{$size}}</a>
+                    <input type="radio" name="sizes" id="{{$size}}" value="{{$size}}" class="size">
+                    <label for="{{$size}}" style="margin-right: 20px">{{$size}}</label>
                     @endforeach
                 </div>
 
@@ -111,7 +113,8 @@
                     <span>Qty:</span>
 
                     <div class="quantity buttons_added">
-                        <input type="number" step="1" min="0" value="1" title="Qty" class="input-text qty text" />
+                        <input type="number" step="1" min="0" value="1" title="Qty"
+                            class="input-text jumlah qty text" />
                         <div class="quantity-adjust">
                             <a href="#" class="plus">
                                 <i class="fa fa-angle-up"></i>
@@ -122,7 +125,7 @@
                         </div>
                     </div>
 
-                    <a href="/cart" class="btn btn-dark btn-lg add-to-cart"><span>Add to Cart</span></a>
+                    <a href="#" class="btn btn-dark btn-lg add-to-cart"><span>Add to Cart</span></a>
 
                     <a href="#" class="product-add-to-wishlist"><i class="fa fa-heart"></i></a>
                 </div>
@@ -208,13 +211,13 @@
         <div class="row">
 
             <div id="owl-related-items" class="owl-carousel owl-theme">
-                @foreach ($latest_products as $product)
+                @foreach ($latest_products as $produk)
                 <div class="product">
                     <div class="product-item hover-trigger">
                         <div class="product-img">
-                            <a href="/product/{{$product->id}}">
-                                <img src="/uploads/{{$product->gambar}}" alt="">
-                                <img src="/uploads/{{$product->gambar}}" alt="" class="back-img">
+                            <a href="/product/{{$produk->id}}">
+                                <img src="/uploads/{{$produk->gambar}}" alt="">
+                                <img src="/uploads/{{$produk->gambar}}" alt="" class="back-img">
                             </a>
                             <div class="product-label">
                                 <span class="sale">sale</span>
@@ -226,20 +229,20 @@
                                     </a>
                                 </div>
                             </div>
-                            <a href="/product/{{$product->id}}" class="product-quickview">More</a>
+                            <a href="/product/{{$produk->id}}" class="product-quickview">More</a>
                         </div>
                         <div class="product-details">
                             <h3 class="product-title">
-                                <a href="/product/{{$product->id}}">{{$product->nama_barang}}</a>
+                                <a href="/product/{{$produk->id}}">{{$produk->nama_barang}}</a>
                             </h3>
                             <span class="category">
                                 <a
-                                    href="/products/{{$product->id_subkategori}}">{{$product->subcategory->nama_subkategori}}</a>
+                                    href="/products/{{$produk->id_subkategori}}">{{$produk->subcategory->nama_subkategori}}</a>
                             </span>
                         </div>
                         <span class="price">
                             <ins>
-                                <span class="amount">Rp. {{number_format($product->harga)}}</span>
+                                <span class="amount">Rp. {{number_format($produk->harga)}}</span>
                             </ins>
                         </span>
                     </div>
@@ -252,3 +255,41 @@
 </section> <!-- end related products -->
 
 @endsection
+
+
+@push('js')
+<script>
+    $(function(){
+        $('.add-to-cart').click(function(e){
+            id_member = {{Auth::guard('webmember')->user()->id}}
+            id_barang = {{$product->id}}
+            jumlah = $('.jumlah').val()
+            size = $('.size').val()
+            color = $('.color').val()
+            total = {{$product->harga}}*jumlah
+            is_checkout = 0
+
+            $.ajax({
+                url : '/add_to_cart',
+                method : "POST",
+                headers: {
+                    'X-CSRF-TOKEN': "{{csrf_token()}}",
+                },
+                data : {
+                    id_member,
+                    id_barang,
+                    jumlah,
+                    size,
+                    color,
+                    total,
+                    is_checkout,
+                },
+                success : function(data){
+                    window.location.href = '/cart'
+                }
+            });
+        })
+    })
+
+</script>
+@endpush

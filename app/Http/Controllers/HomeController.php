@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\About;
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Slider;
 use App\Models\Testimoni;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -28,6 +30,18 @@ class HomeController extends Controller
         return view('home.products', compact('products'));
     }
 
+    public function add_to_cart(Request $request)
+    {
+        $input = $request->all();
+        Cart::create($input);
+    }
+
+    public function delete_from_cart(Cart $cart)
+    {
+        $cart->delete();
+        return redirect('/cart');
+    }
+
     public function product($id_product)
     {
         $product = Product::find($id_product);
@@ -38,7 +52,9 @@ class HomeController extends Controller
 
     public function cart()
     {
-        return view('home.cart');
+        $carts = Cart::where('id_member', Auth::guard('webmember')->user()->id)->get();
+
+        return view('home.cart', compact('carts'));
     }
 
     public function checkout()

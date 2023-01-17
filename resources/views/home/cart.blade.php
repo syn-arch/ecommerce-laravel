@@ -20,101 +20,45 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($carts as $cart)
                             <tr class="cart_item">
                                 <td class="product-thumbnail">
                                     <a href="#">
-                                        <img src="/front/img/shop/shop_item_3.jpg" alt="">
+                                        <img src="/uploads/{{$cart->product->gambar}}" alt="">
                                     </a>
                                 </td>
                                 <td class="product-name">
-                                    <a href="#">Fashion Shorts</a>
+                                    <a href="#">{{$cart->product->nama_barang}}</a>
                                     <ul>
-                                        <li>Size: XL</li>
-                                        <li>Color: White</li>
+                                        <li>Size: {{$cart->size}}</li>
+                                        <li>Color: {{$cart->color}}</li>
                                     </ul>
                                 </td>
                                 <td class="product-price">
-                                    <span class="amount">$1250.00</span>
+                                    <span class="amount">{{ "Rp. " . number_format($cart->product->harga)}}</span>
                                 </td>
                                 <td class="product-quantity">
-                                    <div class="quantity buttons_added">
-                                        <input type="number" step="1" min="0" value="1" title="Qty"
-                                            class="input-text qty text">
-                                        <div class="quantity-adjust">
-                                            <a href="#" class="plus">
-                                                <i class="fa fa-angle-up"></i>
-                                            </a>
-                                            <a href="#" class="minus">
-                                                <i class="fa fa-angle-down"></i>
-                                            </a>
-                                        </div>
-                                    </div>
+                                    <span class="amount">{{ $cart->jumlah }}</span>
                                 </td>
                                 <td class="product-subtotal">
-                                    <span class="amount">$1250.00</span>
+                                    <span class="amount">{{ "Rp. " . number_format($cart->total)}}</span>
                                 </td>
                                 <td class="product-remove">
-                                    <a href="#" class="remove" title="Remove this item">
+                                    <a href="/delete_from_cart/{{$cart->id}}" class="remove" title="Remove this item">
                                         <i class="ui-close"></i>
                                     </a>
                                 </td>
                             </tr>
-
-                            <tr class="cart_item">
-                                <td class="product-thumbnail">
-                                    <a href="#">
-                                        <img src="/front/img/shop/shop_item_7.jpg" alt="">
-                                    </a>
-                                </td>
-                                <td class="product-name">
-                                    <a href="#">Business Suit</a>
-                                    <ul>
-                                        <li>Size: L</li>
-                                        <li>Color: Black</li>
-                                    </ul>
-                                </td>
-                                <td class="product-price">
-                                    <span class="amount">$240.00</span>
-                                </td>
-                                <td class="product-quantity">
-                                    <div class="quantity buttons_added">
-                                        <input type="number" step="1" min="0" value="1" title="Qty"
-                                            class="input-text qty text">
-                                        <div class="quantity-adjust">
-                                            <a href="#" class="plus">
-                                                <i class="fa fa-angle-up"></i>
-                                            </a>
-                                            <a href="#" class="minus">
-                                                <i class="fa fa-angle-down"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="product-subtotal">
-                                    <span class="amount">$240.00</span>
-                                </td>
-                                <td class="product-remove">
-                                    <a href="#" class="remove" title="Remove this item">
-                                        <i class="ui-close"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
 
                 <div class="row mb-50">
                     <div class="col-md-5 col-sm-12">
-                        <div class="coupon">
-                            <input type="text" name="coupon_code" id="coupon_code" class="input-text form-control" value
-                                placeholder="Coupon code">
-                            <input type="submit" name="apply_coupon" class="btn btn-lg btn-stroke" value="Apply">
-                        </div>
                     </div>
-
                     <div class="col-md-7">
                         <div class="actions">
-                            <input type="submit" name="update_cart" value="Update Cart" class="btn btn-lg btn-stroke">
                             <div class="wc-proceed-to-checkout">
                                 <a href="/checkout" class="btn btn-lg btn-dark"><span>proceed to checkout</span></a>
                             </div>
