@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2023 at 09:47 AM
+-- Generation Time: Jan 17, 2023 at 12:54 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -36,15 +36,44 @@ CREATE TABLE `about` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `telepon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `atas_nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `no_rekening` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `about`
 --
 
-INSERT INTO `about` (`id`, `judul_website`, `logo`, `deskripsi`, `alamat`, `email`, `telepon`, `created_at`, `updated_at`) VALUES
-(1, 'Ecommerce Laraavel', '16733466071.png', 'Zenna Shop is a very slick and clean e-commerce template with endless possibilities. Creating an awesome clothes store with this Theme is easy than you can imagine. And finally the subconscious is the mechanism through which thought impulses which are repeated regularly with feeling. And emotion are quickened. Duis turpis eros, tincidunt at, tempor a nisi. Fusce turpis mi, sollicitudin non volutpat id, ornare at nunc. Vestibulum tristique molestie mauris, non ultricies turpis consequat eget titik', 'JL. Cempaka No. 69', 'rplshop@gmail.com', '083822623170', NULL, '2023-01-10 03:31:56');
+INSERT INTO `about` (`id`, `judul_website`, `logo`, `deskripsi`, `alamat`, `email`, `telepon`, `created_at`, `updated_at`, `atas_nama`, `no_rekening`) VALUES
+(1, 'Ecommerce Laraavel', '16733466071.png', 'Zenna Shop is a very slick and clean e-commerce template with endless possibilities. Creating an awesome clothes store with this Theme is easy than you can imagine. And finally the subconscious is the mechanism through which thought impulses which are repeated regularly with feeling. And emotion are quickened. Duis turpis eros, tincidunt at, tempor a nisi. Fusce turpis mi, sollicitudin non volutpat id, ornare at nunc. Vestibulum tristique molestie mauris, non ultricies turpis consequat eget titik', 'JL. Cempaka No. 69', 'rplshop@gmail.com', '083822623170', NULL, '2023-01-14 02:16:50', 'Kang Kasep', '1234-1234-1234-1234');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `carts`
+--
+
+CREATE TABLE `carts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `id_member` int(11) NOT NULL,
+  `id_barang` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `size` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `color` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total` int(11) NOT NULL,
+  `is_checkout` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `carts`
+--
+
+INSERT INTO `carts` (`id`, `id_member`, `id_barang`, `jumlah`, `size`, `color`, `total`, `is_checkout`, `created_at`, `updated_at`) VALUES
+(1, 2, 3, 2, 'S', 'Hitam', 5186, 1, '2023-01-14 03:19:40', '2023-01-17 04:41:29'),
+(2, 2, 5, 1, 'S', 'Hitam', 25597, 1, '2023-01-14 03:27:39', '2023-01-17 04:41:29');
 
 -- --------------------------------------------------------
 
@@ -95,16 +124,19 @@ CREATE TABLE `failed_jobs` (
 CREATE TABLE `members` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `nama_member` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `provinsi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `kabupaten` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `kecamatan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `detail_alamat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `no_hp` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `members`
+--
+
+INSERT INTO `members` (`id`, `nama_member`, `no_hp`, `email`, `password`, `created_at`, `updated_at`) VALUES
+(2, 'Asep', '08312312332', 'asep@gmail.com', '$2y$10$6Onep3VFDbVhXRsjlPiEKeXN935BeVxf0vIfWJjANhRI3rnLkAiMG', '2023-01-14 02:35:26', '2023-01-14 02:35:26');
 
 -- --------------------------------------------------------
 
@@ -138,7 +170,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (13, '2022_10_05_100705_add_status_to_orders_table', 1),
 (14, '2022_10_15_105217_modify_order_details_table', 1),
 (15, '2022_10_25_100740_create_payments_table', 1),
-(16, '2023_01_05_074910_create_about_table', 1);
+(16, '2023_01_05_074910_create_about_table', 1),
+(17, '2023_01_14_091405_add_rekening_to_about', 2),
+(18, '2023_01_14_092329_drop_column_in_members', 3),
+(20, '2023_01_14_094938_create_carts_table', 4),
+(21, '2023_01_17_113902_add_id_member_to_payments', 5);
 
 -- --------------------------------------------------------
 
@@ -155,6 +191,13 @@ CREATE TABLE `orders` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `id_member`, `invoice`, `grand_total`, `created_at`, `updated_at`, `status`) VALUES
+(2, 2, 23011729, 40783, '2023-01-17 04:41:29', '2023-01-17 04:51:22', 'Selesai');
 
 -- --------------------------------------------------------
 
@@ -173,6 +216,14 @@ CREATE TABLE `order_details` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `order_details`
+--
+
+INSERT INTO `order_details` (`id`, `id_order`, `id_produk`, `jumlah`, `size`, `color`, `total`, `created_at`, `updated_at`) VALUES
+(3, 2, 3, 2, 'S', 'Hitam', 5186, '2023-01-17 11:52:28', NULL),
+(4, 2, 5, 1, 'S', 'Hitam', 25597, '2023-01-16 17:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -204,8 +255,16 @@ CREATE TABLE `payments` (
   `no_rekening` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `atas_nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `id_member` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`id`, `id_order`, `jumlah`, `provinsi`, `kabupaten`, `kecamatan`, `detail_alamat`, `status`, `no_rekening`, `atas_nama`, `created_at`, `updated_at`, `id_member`) VALUES
+(2, 2, 40783, '6', '152', '', 'Ut modi sed eligendi', 'DITERIMA', '1234-1234-1234-1234', 'Kang Kasep', '2023-01-17 04:41:49', '2023-01-17 04:45:58', 2);
 
 -- --------------------------------------------------------
 
@@ -256,7 +315,7 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`id`, `id_kategori`, `id_subkategori`, `nama_barang`, `gambar`, `deskripsi`, `harga`, `diskon`, `bahan`, `tags`, `sku`, `ukuran`, `warna`, `created_at`, `updated_at`) VALUES
 (1, 3, 4, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_1.jpg', 'Lorem Ipsum Dolor Sit Amet', 14850, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', 'SAfO2Zzn', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
 (2, 1, 3, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_2.jpg', 'Lorem Ipsum Dolor Sit Amet', 50623, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', 'E7KEpD8l', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
-(3, 1, 2, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_3.jpg', 'Lorem Ipsum Dolor Sit Amet', 2593, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', 'Wb2zzEY4', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
+(3, 1, 2, 'Lorem Ipsum Dolor Sit Amet 3', 'shop_image_3.jpg', 'Lorem Ipsum Dolor Sit Amet', 2593, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', 'Wb2zzEY4', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
 (4, 3, 2, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_4.jpg', 'Lorem Ipsum Dolor Sit Amet', 31901, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', 'L3er4N2e', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
 (5, 3, 1, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_5.jpg', 'Lorem Ipsum Dolor Sit Amet', 25597, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', 'KfnpmhpA', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
 (6, 1, 4, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_6.jpg', 'Lorem Ipsum Dolor Sit Amet', 7292, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', 'mZWsY5kU', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
@@ -400,6 +459,12 @@ ALTER TABLE `about`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `carts`
+--
+ALTER TABLE `carts`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
@@ -504,6 +569,12 @@ ALTER TABLE `about`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `carts`
+--
+ALTER TABLE `carts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
@@ -519,31 +590,31 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
